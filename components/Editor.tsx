@@ -1,7 +1,6 @@
 import React from 'react';
 import Editor from 'react-simple-code-editor';
-// @ts-ignore
-import { highlight, languages } from 'prismjs/components/prism-core';
+import Prism from 'prismjs';
 import 'prismjs/components/prism-markdown';
 import 'prismjs/themes/prism-tomorrow.css'; // Dark theme for editor contrast
 
@@ -28,7 +27,7 @@ const EditorComponent: React.FC<EditorComponentProps> = ({ markdown, onChange })
       <Editor
         value={markdown}
         onValueChange={onChange}
-        highlight={(code) => highlight(code, languages.markdown)}
+        highlight={(code) => Prism.highlight(code, Prism.languages.markdown, 'markdown')}
         padding={24}
         className="textarea-editor"
         style={{
