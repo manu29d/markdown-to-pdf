@@ -1,5 +1,5 @@
-import React from 'react';
-import { Download, Sparkles, RotateCcw, FileText, Type, Palette, LayoutTemplate } from 'lucide-react';
+import React, { useState } from 'react';
+import { Download, Sparkles, RotateCcw, FileText, Type, Palette, LayoutTemplate, Settings, X } from 'lucide-react';
 import { ToolbarProps } from '../types';
 
 const Toolbar: React.FC<ToolbarProps> = ({ 
@@ -16,6 +16,27 @@ const Toolbar: React.FC<ToolbarProps> = ({
   templates,
   onTemplateSelect
 }) => {
+  const [showSettings, setShowSettings] = useState(false);
+  const [apiKey, setApiKey] = useState(localStorage.getItem('gemini_api_key') || '');
+  const [tempApiKey, setTempApiKey] = useState(apiKey);
+
+  const handleSaveApiKey = () => {
+    if (tempApiKey.trim()) {
+      localStorage.setItem('gemini_api_key', tempApiKey.trim());
+      setApiKey(tempApiKey.trim());
+    }
+    setShowSettings(false);
+  };
+
+  const handleClearApiKey = () => {
+    if (window.confirm('Are you sure you want to remove your API key from this browser?')) {
+      localStorage.removeItem('gemini_api_key');
+      setApiKey('');
+      setTempApiKey('');
+      setShowSettings(false);
+    }
+  };
+
   return (
     <header className="bg-white border-b border-slate-200 h-auto py-3 md:py-0 md:h-16 px-4 md:px-6 flex flex-col md:flex-row items-center justify-between no-print z-50 gap-3 md:gap-0">
       <div className="flex items-center gap-2 w-full md:w-auto justify-between md:justify-start">
@@ -101,6 +122,15 @@ const Toolbar: React.FC<ToolbarProps> = ({
         </button>
 
         <button
+          onClick={() => setShowSettings(true)}
+          className="flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full text-sm font-medium transition-all border border-slate-300"
+          title="Settings"
+        >
+          <Settings size={16} />
+          <span className="hidden sm:inline">Settings</span>
+        </button>
+
+        <button
           onClick={onPrint}
           className="flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-full text-sm font-medium transition-all shadow-md active:scale-95"
           title="Save as PDF"
@@ -109,6 +139,55 @@ const Toolbar: React.FC<ToolbarProps> = ({
           <span className="hidden sm:inline">PDF</span>
         </button>
       </div>
+
+      {/* Settings Modal */}
+      {showSettings && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[100] no-print" onClick={() => setShowSettings(false)}>
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-bold text-slate-800">Settings</h2>
+              <button onClick={() => setShowSettings(false)} className="text-slate-400 hover:text-slate-600">
+                <X size={20} />
+              </button>
+            </div>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-2">
+                  Google Gemini API Key
+                </label>
+                <input
+                  type="password"
+                  value={tempApiKey}
+                  onChange={(e) => setTempApiKey(e.target.value)}
+                  placeholder="Enter your API key"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                />
+                <p className="mt-2 text-xs text-slate-500">
+                  Your API key is stored locally in your browser and never sent to any server except Google Gemini.
+                </p>
+              </div>
+
+              <div className="flex gap-2 justify-end">
+                {apiKey && (
+                  <button
+                    onClick={handleClearApiKey}
+                    className="px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                  >
+                    Remove Key
+                  </button>
+                )}
+                <button
+                  onClick={handleSaveApiKey}
+                  className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

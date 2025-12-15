@@ -16,6 +16,9 @@ const EditorComponent: React.FC<EditorComponentProps> = ({ markdown, onChange })
         .textarea-editor {
             min-height: 100%;
         }
+        .textarea-editor textarea::placeholder {
+            color: #5C6370 !important;
+        }
         /* Overriding prism styles for cleaner look */
         code[class*="language-"], pre[class*="language-"] {
             font-family: 'Fira Code', monospace !important;
@@ -33,6 +36,7 @@ const EditorComponent: React.FC<EditorComponentProps> = ({ markdown, onChange })
         style={{
           fontFamily: '"Fira Code", monospace',
           fontSize: 13,
+          color: '#ABB2BF',
         }}
         textareaId="markdown-editor"
         placeholder="Type your resume markdown here..."

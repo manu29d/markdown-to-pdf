@@ -41,18 +41,14 @@ const App: React.FC = () => {
 
   // Handle AI Polish
   const handleAiPolish = useCallback(async () => {
-    if (!process.env.API_KEY) {
-      alert("Please configure the API_KEY in your environment to use AI features.");
-      return;
-    }
-    
     setIsGenerating(true);
     try {
       const improvedMarkdown = await polishResume(markdown);
       setMarkdown(improvedMarkdown);
     } catch (error) {
       console.error(error);
-      alert("Failed to improve resume using AI. Please try again.");
+      const errorMessage = error instanceof Error ? error.message : "Failed to improve resume using AI. Please try again.";
+      alert(errorMessage);
     } finally {
       setIsGenerating(false);
     }

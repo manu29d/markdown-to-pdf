@@ -2,16 +2,23 @@ import { GoogleGenAI } from "@google/genai";
 import { SYSTEM_INSTRUCTION } from "../constants";
 
 let client: GoogleGenAI | null = null;
+let lastApiKey: string | null = null;
 
 const getClient = () => {
-  if (!client) {
-    const apiKey = process.env.API_KEY;
-    if (!apiKey) {
-      console.error("API_KEY is missing from environment variables.");
-      throw new Error("API Key not found");
-    }
-    client = new GoogleGenAI({ apiKey });
+  // Check localStorage for API key first, fall back to env var
+  const apiKey = localStorage.getItem('gemini_api_key') || process.env.API_KEY;
+  
+  if (!apiKey) {
+    console.error("API_KEY is missing. Please set it in Settings.");
+    throw new Error("API Key not found. Please configure it in Settings.");
   }
+
+  // Recreate client if API key changed
+  if (!client || lastApiKey !== apiKey) {
+    client = new GoogleGenAI({ apiKey });
+    lastApiKey = apiKey;
+  }
+  
   return client;
 };
 
