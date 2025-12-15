@@ -7,11 +7,11 @@ const Preview: React.FC<PreviewProps> = ({ markdown, fontFamily, theme }) => {
   const { colors } = theme;
 
   return (
-    <div className="h-full w-full bg-pastel-slate overflow-auto flex justify-center p-8 relative">
+    <div id="preview-container" className="h-full w-full bg-pastel-slate overflow-auto flex justify-center p-8 relative">
       {/* A4 Paper Simulation */}
       <div 
         id="resume-preview"
-        className="bg-white shadow-lg w-[210mm] min-h-[297mm] p-[15mm] md:p-[20mm] box-border mx-auto origin-top transition-colors duration-300"
+        className="bg-white shadow-lg w-[210mm] min-h-[297mm] px-[15mm] py-[10mm] md:px-[20mm] md:py-[15mm] box-border mx-auto origin-top transition-colors duration-300"
         style={{ fontFamily: fontFamily }}
       >
         <style>{`

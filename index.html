@@ -54,6 +54,24 @@
           margin: 0;
           size: A4;
         }
+        body {
+          height: auto;
+          overflow: visible;
+          background: white;
+        }
+        
+        /* Reset the wrapper to prevent layout interference */
+        #preview-container {
+          position: static !important;
+          display: block !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          height: auto !important;
+          width: auto !important;
+          overflow: visible !important;
+          background: transparent !important;
+        }
+
         body * {
           visibility: hidden;
         }
@@ -64,14 +82,136 @@
           position: absolute;
           left: 0;
           top: 0;
-          width: 100%;
+          width: 210mm;
+          min-height: 297mm;
           margin: 0;
-          padding: 15mm 20mm !important; /* Print padding matching preview */
-          box-shadow: none !important;
-          background: white !important;
-          border-radius: 0 !important;
-          overflow: visible !important;
+          padding: 10mm 15mm; /* Reduced top/bottom padding */
+          box-sizing: border-box;
+          box-shadow: none;
+          background: white;
+          border-radius: 0;
+          overflow: visible;
         }
+
+        /* H1 Headings */
+        #resume-preview h1 {
+          font-size: 14pt;
+          font-weight: 700;
+          border-bottom-width: 2px;
+          border-bottom-style: solid;
+          padding-bottom: 0.5rem;
+          margin-bottom: 1rem;
+          margin-top: 1.5rem;
+          line-height: 1.25;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        #resume-preview h1:first-child {
+          margin-top: 0;
+        }
+
+        /* H2 Headings */
+        #resume-preview h2 {
+          font-size: 13pt;
+          font-weight: 700;
+          margin-top: 1.25rem;
+          margin-bottom: 0.75rem;
+          line-height: 1.375;
+        }
+
+        /* H3 Headings */
+        #resume-preview h3 {
+          font-size: 12pt;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.025em;
+          border-bottom-width: 1px;
+          border-bottom-style: solid;
+          padding-bottom: 0.25rem;
+          margin-top: 1.5rem;
+          margin-bottom: 0.75rem;
+        }
+
+        /* Paragraphs */
+        #resume-preview p {
+          font-size: 10pt;
+          line-height: 1.6;
+          margin-bottom: 0.75rem;
+        }
+
+        /* Unordered Lists */
+        #resume-preview ul {
+          list-style-type: disc;
+          list-style-position: outside;
+          margin-left: 1rem;
+          margin-bottom: 0.75rem;
+          font-size: 10pt;
+        }
+
+        /* Ordered Lists */
+        #resume-preview ol {
+          list-style-type: decimal;
+          list-style-position: outside;
+          margin-left: 1rem;
+          margin-bottom: 0.75rem;
+          font-size: 10pt;
+        }
+
+        /* List Items */
+        #resume-preview li {
+          margin-bottom: 0.25rem;
+          line-height: 1.5;
+          padding-left: 0.25rem;
+        }
+
+        /* Links */
+        #resume-preview a {
+          text-decoration: underline;
+          text-decoration-thickness: 1px;
+          text-underline-offset: 2px;
+        }
+
+        /* Horizontal Rules */
+        #resume-preview hr {
+          border-top-width: 1px;
+          border-top-style: solid;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+        }
+
+        /* Blockquotes */
+        #resume-preview blockquote {
+          border-left-width: 4px;
+          border-left-style: solid;
+          padding-left: 1rem;
+          font-style: italic;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+        }
+
+        /* Strong/Bold */
+        #resume-preview strong {
+          font-weight: 700;
+        }
+
+        /* Emphasis/Italic */
+        #resume-preview em {
+          font-style: italic;
+        }
+
+        /* Page break optimization */
+        #resume-preview h1,
+        #resume-preview h2,
+        #resume-preview h3 {
+          page-break-after: avoid;
+        }
+
+        /* Remove transitions for print */
+        #resume-preview * {
+          transition: none !important;
+        }
+
         /* Hide UI elements */
         .no-print {
           display: none !important;
