@@ -69,9 +69,9 @@ export const THEMES: Theme[] = [
   }
 ];
 
-export const INITIAL_MARKDOWN = `# Manu Dwivedi
+export const INITIAL_MARKDOWN = `# Jordan Smith
 
-Email: manu2d@gmail.com | Phone: +91-8452866624 | [linkedin.com/in/manu29d](https://linkedin.com)
+Email: jordan.smith@example.com | Phone: +1-555-010-2020 | [linkedin.com/in/jordansmith](https://linkedin.com)
 
 ### Profile Summary
 
@@ -85,7 +85,7 @@ Senior Engineer and Team Lead with over 12 years of full-stack experience, speci
 
 ### Professional Experience
 
-**Engineering Team Lead** | **Easyship** | *Feb 2025 - Present*
+**Engineering Team Lead** | **TechFlow Systems** | *Feb 2025 - Present*
 
 * Leading the Courier Integrations squad, fostering a high-performance engineering culture and overseeing technical execution.
 * Managing sprint planning and technical roadmaps while contributing to the 'Supership' project by defining user flows and mockups for the application.
@@ -97,7 +97,7 @@ Senior Engineer and Team Lead with over 12 years of full-stack experience, speci
 * Specialized in creating stable, intuitive interfaces that reduced customer support tickets.
 * Mentored client teams to improve code stability, reducing bug reports through improved testing strategies.
 
-**Lead Software Engineer** | **PlanSource India** | *April 2021 - May 2022*
+**Lead Software Engineer** | **Global Solutions Inc** | *April 2021 - May 2022*
 
 * Guided front-end development and technical improvements for a large-scale **React** application.
 * Designed solutions for both Rails and **React** codebases, facilitating cross-functional development across four distinct engineering teams.
