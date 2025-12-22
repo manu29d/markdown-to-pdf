@@ -72,20 +72,14 @@
           background: transparent !important;
         }
 
-        body * {
-          visibility: hidden;
-        }
-        #resume-preview, #resume-preview * {
-          visibility: visible;
-        }
         #resume-preview {
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 210mm;
+          position: relative;
+          left: auto;
+          top: auto;
+          width: 100%;
           min-height: 297mm;
-          margin: 0;
-          padding: 10mm 15mm; /* Reduced top/bottom padding */
+          margin: 0 auto;
+          padding: 15mm 20mm;
           box-sizing: border-box;
           box-shadow: none;
           background: white;
