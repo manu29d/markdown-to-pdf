@@ -2,6 +2,10 @@
 
 A beautiful, Markdown-to-PDF resume builder featuring soft pastel themes, live A4 preview, and AI-powered text polishing.
 
+## Screenshot
+
+![dev screenshot](assets/dev-screenshot.png)
+
 ## Features
 
 - **Live Preview**: Real-time rendering of Markdown into a professional A4 resume format.
